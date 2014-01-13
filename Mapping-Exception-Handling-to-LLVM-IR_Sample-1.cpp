@@ -42,7 +42,7 @@ int Bar(bool fail)
     Foo foo;
     foo.SetLength(17);
     if (fail)
-        throw new Exception("Exception requested by caller");
+        throw Exception("Exception requested by caller");
     foo.SetLength(24);
     return foo.GetLength();
 }
@@ -61,9 +61,9 @@ int main(int argc, const char *argv[])
 
         result = EXIT_SUCCESS;
     }
-    catch (Exception *that)
+    catch (Exception& that)
     {
-        printf("Error: %s\n", that->GetText());
+        printf("Error: %s\n", that.GetText());
         result = EXIT_FAILURE;
     }
     catch (...)
