@@ -1,5 +1,24 @@
 #include <stdio.h>
-#include <stddef.h>
+#include <stdlib.h>
+
+struct Object
+{
+    virtual ~Object() {}
+};
+
+struct Exception : Object
+{
+    const char* text_;
+
+    Exception(const char* text)
+        :   text_(text)
+    {
+    }
+    const char* GetText() const
+    {
+        return text_;
+    }
+};
 
 class Foo
 {
