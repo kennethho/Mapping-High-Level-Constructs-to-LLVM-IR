@@ -1,25 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Object
-{
-    virtual ~Object() {}
-};
-
-struct Exception : Object
-{
-    const char* text_;
-
-    Exception(const char* text)
-        :   text_(text)
-    {
-    }
-    const char* GetText() const
-    {
-        return text_;
-    }
-};
-
 class Foo
 {
 public:
@@ -42,7 +23,7 @@ int Bar(bool fail)
     Foo foo;
     foo.SetLength(17);
     if (fail)
-        throw Exception("Exception requested by caller");
+        throw "Exception requested by caller";
     foo.SetLength(24);
     return foo.GetLength();
 }
@@ -61,9 +42,9 @@ int main(int argc, const char *argv[])
 
         result = EXIT_SUCCESS;
     }
-    catch (Exception& that)
+    catch (const char* text)
     {
-        printf("Error: %s\n", that.GetText());
+        printf("Error: %s\n", text);
         result = EXIT_FAILURE;
     }
     catch (...)
