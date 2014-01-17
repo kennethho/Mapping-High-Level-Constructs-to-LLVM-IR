@@ -47,11 +47,6 @@ int main(int argc, const char *argv[])
         printf("Error: %s\n", text);
         result = EXIT_FAILURE;
     }
-    catch (...)
-    {
-        puts("Internal error: Unhandled exception detected");
-        result = EXIT_FAILURE;
-    }
 
     return result;
 }
